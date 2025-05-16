@@ -32,7 +32,7 @@ app.use(cookieParser());     // It is used to parse the cookies from the incomin
 
 app.use(     // It will allow only the mentioned origin to access the resource from backend.
     cors({
-        origin: "https://job-portal-rajdeeprautela.vercel.app/",    // It will allow requests from only localhost:5173 origin to access the resource from backend.    
+        origin: "https://job-portal-rajdeeprautela.vercel.app",    // It will allow requests from only localhost:5173 origin to access the resource from backend.    
         // origin: "*",  means allow all origins to access resource from backend.
 
         credentials: true,          // It allows the credentials to be shared between the frontend and backend like cookies can be shared between the frontend and backend.
