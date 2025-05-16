@@ -46,9 +46,17 @@ app.use(     // It will allow only the mentioned origin to access the resource f
 app.use(express.json({ exteded: true, limit: '100kb' }));  
 app.use(express.urlencoded({ extended: true, limit: '100kb' }));
 
+const allowedOrigins = [
+  'http://localhost:3000', // Local development
+  'https://job-portal-rajdeeprautela.vercel.app' // Production frontend
+];
 // Middlware for Headers ====================================================
 app.use((req,res,next)=>{       // Without this middleware, the frontend will not be able to access the headers from the backend.
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');  // It will allow only the mentioned origin to access the resource from backend.
+
+    const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin); // It will allow only the mentioned origin to access the resource from backend.
+  }
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // It will allow only the mentioned headers to be created as the custom headers.
     res.setHeader('Access-Control-Expose-Headers', 'Authorization'); // It will allow only the mentioned headers to be exposed to the frontend.
     // res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
