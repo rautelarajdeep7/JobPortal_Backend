@@ -12,5 +12,6 @@ export const dbConnect = async () => {
     }
     catch (error) {
         console.log("DB Error: ", error.message);
+        process.exit(1); // Exit process with failure. On render it will restart the server after the server crash.
     }
 }
